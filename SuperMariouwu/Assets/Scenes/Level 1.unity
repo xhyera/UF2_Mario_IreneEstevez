@@ -7068,7 +7068,7 @@ GameObject:
   - component: {fileID: 194651872}
   - component: {fileID: 194651871}
   m_Layer: 0
-  m_Name: Castillo
+  m_Name: Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24201,7 +24201,7 @@ GameObject:
   - component: {fileID: 623189392}
   - component: {fileID: 623189391}
   m_Layer: 5
-  m_Name: Contadores
+  m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26211,7 +26211,7 @@ GameObject:
   - component: {fileID: 668242944}
   - component: {fileID: 668242943}
   m_Layer: 0
-  m_Name: Vacio
+  m_Name: Void
   m_TagString: Vacio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65626,7 +65626,7 @@ GameObject:
   - component: {fileID: 1807280467}
   - component: {fileID: 1807280466}
   m_Layer: 0
-  m_Name: Borde Izquierda
+  m_Name: Left Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
