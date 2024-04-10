@@ -18,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumper = 13;
     public GroundSensor sensor;
     public AudioClip jumpSound;
+    public Transform bulletSpawn;
+    public GameObject bulletPrefab;
+    private bool canShoot = true;
+    public float timer;
+    public float rateOfFire = 1;
 
     void Awake(){
         rBody = GetComponent<Rigidbody2D>();
@@ -34,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Shoot();
+
         inputHorizontal = Input.GetAxis("Horizontal");
         if(Input.GetButtonDown("Jump") && sensor.isGrounded) {
             rBody.AddForce(new Vector2(0,1) * jumper, ForceMode2D.Impulse);
@@ -43,11 +50,13 @@ public class PlayerMovement : MonoBehaviour
         }
         
         if(inputHorizontal < 0){
-            render.flipX = true;
+            //render.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             anim.SetBool("IsRunning",true);
         }
         else if(inputHorizontal > 0){
-            render.flipX = false;
+            //render.flipX = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             anim.SetBool("IsRunning",true);
         }
         else anim.SetBool("IsRunning",false);
@@ -63,11 +72,30 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate(){
         rBody.velocity = new Vector2(inputHorizontal * movementSpeed, rBody.velocity.y); 
     }
+    void Shoot()
+    {
+       if(!canShoot)
+       {
+        timer += Time.deltaTime;
+        if(timer>= rateOfFire)
+        {
+            canShoot = true;
+            timer = 0;
+        }
+       }
+       if(Input.GetKeyDown(KeyCode.F) && canShoot)
+        {
+            Instantiate(bulletPrefab, bulletSpawn.position,bulletSpawn.rotation);
+
+            canShoot = false;
+        }
+    }
 
     public void MarioDeath(){
         SceneManager.LoadScene("Game Over");
         Destroy(gameObject);
     }
+    
 }
 
 
